@@ -1,3 +1,3 @@
-# ts-explain
+# Advent of Code 2021
 
-lol
+Aim of this repo? Having fun!
