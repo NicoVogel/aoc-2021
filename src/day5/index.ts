@@ -110,19 +110,17 @@ function plotStraitLines(plot: Plot, lines: Line[]) {
 }
 
 function plotDiagonalLines(plot: Plot, lines: Line[]) {
-  lines.forEach((line) => {
-    if (line.from.x === line.from.y) {
-      for (let x = line.from.x; x <= line.to.x; x++) {
-        // console.log('d', { ...line, x });
-        plot[x][x] += 1;
-      }
-      return;
-    }
-    const { from, to } = getStartAndEndValues(line);
-    let y = to.y;
-    for (let x = from.x; x <= to.x; x++, y--) {
-      // console.log('d', { from, to, x, y });
+  lines.forEach(({ from, to }) => {
+    const stepX = from.x < to.x ? 1 : -1;
+    const stepY = from.y < to.y ? 1 : -1;
+    const difference = Math.abs(from.x - to.x);
+
+    let x = from.x;
+    let y = from.y;
+    for (let index = 0; index <= difference; index++) {
       plot[x][y] += 1;
+      x += stepX;
+      y += stepY;
     }
   });
 }
