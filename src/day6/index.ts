@@ -2,10 +2,6 @@ import { readFileSync } from 'fs';
 
 type FishStatus = number;
 type AccumulatedFishStatus = FishStatus[];
-type NextGeneration = {
-  newStatus: AccumulatedFishStatus;
-  newFishCount: number;
-};
 
 const values = getValues();
 const accumulatedValues = accumulateStatus(values);
